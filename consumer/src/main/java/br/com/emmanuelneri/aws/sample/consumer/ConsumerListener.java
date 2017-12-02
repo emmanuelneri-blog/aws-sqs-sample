@@ -10,8 +10,8 @@ import java.util.Map;
 @Component
 public class ConsumerListener {
 
-    @JmsListener(destination = "${consumer.sqs.queue.name}")
-    public void recive(@Headers Map<String, Object> messageAttributes,
+    @JmsListener(destination = "${consumer.sqs.message.queue.name}")
+    public void messageConsumer(@Headers Map<String, Object> messageAttributes,
                        @Payload String message) {
         // Do something
         System.out.println("Messages attributes: " + messageAttributes);

@@ -20,32 +20,32 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
-public class FileService {
+public class MessageService {
 
     private static final int MAX_BATCH_SEND_SQS = 10;
 
-    @Value("${consumer.sqs.queue.name}")
+    @Value("${consumer.sqs.message.queue.name}")
     private String queueName;
 
     @Autowired
     private AmazonSQS amazonSQS;
 
-    public void sentToQueue(String file) {
+    public void sentToQueue(String message) {
         final SendMessageRequest sendMessageRequest = new SendMessageRequest()
                 .withQueueUrl(queueName)
-                .withMessageBody(file);
+                .withMessageBody(message);
 
         amazonSQS.sendMessage(sendMessageRequest);
     }
 
-    public void sentToQueue(List<String> files) {
-        Lists.partition(files, MAX_BATCH_SEND_SQS)
+    public void sentToQueue(List<String> messages) {
+        Lists.partition(messages, MAX_BATCH_SEND_SQS)
                 .forEach(strings -> {
                     final AtomicInteger index = new AtomicInteger();
                     final List<SendMessageBatchRequestEntry> entries = strings.stream()
-                            .map(file -> {
+                            .map(message -> {
                                 final String messageId = String.valueOf(index.getAndIncrement());
-                                return new SendMessageBatchRequestEntry(messageId, file);
+                                return new SendMessageBatchRequestEntry(messageId, message);
                             })
                             .collect(Collectors.toList());
 
@@ -57,7 +57,7 @@ public class FileService {
                 });
     }
 
-    public void sentToQueueWithAttributes(String file) {
+    public void sentToQueueWithAttributes(String message) {
         final Map<String, MessageAttributeValue> messageAttributes = new HashMap<>();
         messageAttributes.put("id",
                 new MessageAttributeValue()
@@ -72,7 +72,7 @@ public class FileService {
         final SendMessageRequest sendMessageRequest = new SendMessageRequest()
                 .withQueueUrl(queueName)
                 .withMessageAttributes(messageAttributes)
-                .withMessageBody(file);
+                .withMessageBody(message);
 
         amazonSQS.sendMessage(sendMessageRequest);
     }
