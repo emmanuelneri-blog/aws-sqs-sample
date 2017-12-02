@@ -13,7 +13,6 @@
     <artifactId>producer</artifactId>
 
     <properties>
-        <aws.sdk.version>1.11.236</aws.sdk.version>
         <lombok.version>1.16.16</lombok.version>
         <guava.version>23.5-jre</guava.version>
     </properties>

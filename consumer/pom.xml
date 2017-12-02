@@ -12,6 +12,10 @@
 
     <artifactId>consumer</artifactId>
 
+    <properties>
+        <aws.sqs.messaging>1.0.4</aws.sqs.messaging>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -26,13 +30,13 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
-            <version>1.11.235</version>
+            <version>${aws.sdk.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>amazon-sqs-java-messaging-lib</artifactId>
-            <version>1.0.4</version>
+            <version>${aws.sqs.messaging}</version>
         </dependency>
     </dependencies>
 
