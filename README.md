@@ -6,3 +6,8 @@ O exemplo é dividido em duas aplicações: Producer e Consumer, o producer resp
 
 ## Pré requisito
 Configurar [Default Credential Provider](http://docs.aws.amazon.com/pt_br/sdk-for-java/v1/developer-guide/credentials.html) com as credenciais da AWS no arquivo ```.aws/credentials```.
+
+## Posts 
+
+- [Enviando mensagens para o Amazon SQS](https://wp.me/p5RSbg-iE)
+- [Consumindo fila do SQS com JMS e Spring Boot](https://wp.me/p5RSbg-iG)
