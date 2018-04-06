@@ -18,7 +18,7 @@ O exemplo é dividido em duas aplicações: Producer e Consumer, o producer resp
 
 ## Preparando ambiente
 
-- ```aws-sqs-sample```
+- ```cd aws-sqs-sample```
 - ```mvn clean package```
 
 ## Executando 
